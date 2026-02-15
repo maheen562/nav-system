@@ -63,7 +63,13 @@ export default function EmployeeDirectory() {
       {/* <input type='text' value={columnFilters} onChange={(e) => setColumnFilters(e.target.value)} /> */}
       <FilterFunction column={table.getColumn("name")} table={table} />
       <br />
-      <p>Showing {table.getFilteredRowModel().rows.length} of {table.getRowCount()} employees</p>
+      
+        {table.getFilteredRowModel().rows.length === 0 ? (
+        <div>No results found.</div>
+        ) : (
+        <p>Showing {table.getFilteredRowModel().rows.length} of {employee.length} employees</p>
+        )}
+    
       <table style={{ border: "solid 1px blue" }}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
