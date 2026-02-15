@@ -2,6 +2,10 @@
 
 A React-based employee directory application with navigation sidebar, filtering capabilities, and dashboard.
 
+s3 bucket:
+
+http://nav-system.s3-website-ap-southeast-2.amazonaws.com/
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your system:
