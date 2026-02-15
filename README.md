@@ -20,7 +20,7 @@ Before you begin, ensure you have the following installed on your system:
 
 1. **Clone the repository** (or download the project)
 ```bash
-   git clone <your-repository-url>
+   git clone git@github.com:maheen562/nav-system.git
    cd nav-system
 ```
 
