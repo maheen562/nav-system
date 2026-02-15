@@ -1,23 +1,89 @@
-import React, { use, useEffect, useState } from 'react';
+//table defined from tanstack table, data from dummyjson.com, and react-router-dom for navigation.
+//https://www.youtube.com/watch?v=hson9BXU9F8&list=PLC3y8-rFHvwgWTSrDiwmUsl4ZvipOw9Cz&index=3
+
+import React, { useMemo, useEffect, useState } from "react";
+import {
+  useReactTable,
+  getCoreRowModel,
+  flexRender,
+} from "@tanstack/react-table";
+
+const fallbackData = [];
 
 export default function EmployeeDirectory() {
+  const [employee, setEmployee] = useState([]);
 
-    const [employee, setEmployee] = useState([]);
-
-    useEffect(() => {
-        fetch("https://dummyjson.com/c/092c-8ec9-4627-9bb4")
-        .then(res => res.json())
-        .then(data => setEmployee(data));
-    }, []);
-    return (
-        <>
-        <h1> Employee Directory </h1>
-        {employee.map(emp => (
-            <div key={emp.id}>
-            <p>{emp.name} - Department: {emp.department}</p>
-            </div>
-        ))}
-
-        </>
+  const columns = useMemo(
+    () => [
+      
+      { id: 'id', accessorKey: 'id', header: 'ID' },
+      { id: 'name', accessorKey: 'name', header: 'Name' },
+      { id: 'department', accessorKey: 'department', header: 'Department' },
+      { id: 'position', accessorKey: 'position', header: 'Position' },
+      { id: 'email', accessorKey: 'email', header: 'Email' },
+      { id: 'status', accessorKey: 'status', header: 'Status' },     ],
+      [],
     
-)}
+  );
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/c/092c-8ec9-4627-9bb4")
+      .then((res) => res.json())
+      .then((data) => setEmployee(data));
+  }, []);
+
+  const table = useReactTable({
+    columns,
+    data: employee ?? fallbackData, //also good to use a fallback array that is defined outside of the component (stable reference)
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <>
+      <h1> Employee Directory </h1>
+      <br />
+      <table style={{ border: "solid 1px blue" }}>
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th
+                  key={header.id}
+                  style={{
+                    borderBottom: "solid 3px red",
+                    background: "aliceblue",
+                    color: "black",
+                    fontWeight: "bold",
+                    padding: "10px",
+                  }}
+                >
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td
+                  key={cell.id}
+                  style={{
+                    border: "solid 1px gray",
+                    padding: "10px",
+                  }}
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  );
+}
