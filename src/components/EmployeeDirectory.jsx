@@ -9,6 +9,7 @@ import {
   getFilteredRowModel,
   flexRender,
 } from "@tanstack/react-table";
+import { FormControl, Select, MenuItem } from "@mui/material";
 import FilterFunction from "./FilterFunction";
 
 const fallbackData = [];
@@ -21,10 +22,10 @@ export default function EmployeeDirectory() {
       
       { id: 'id', accessorKey: 'id', header: 'ID' },
       { id: 'name', accessorKey: 'name', header: 'Name' },
-      { id: 'department', accessorKey: 'department', header: 'Department', FilterFn: 'arrIncludesSome' },
+      { id: 'department', accessorKey: 'department', header: 'Department', enableColumnFilter: true  },
       { id: 'position', accessorKey: 'position', header: 'Position' },
       { id: 'email', accessorKey: 'email', header: 'Email' },
-      { id: 'status', accessorKey: 'status', header: 'Status', FilterFn: 'arrIncludesSome' },     ],
+      { id: 'status', accessorKey: 'status', header: 'Status', enableColumnFilter: true },     ],
       [],
     
   );
@@ -50,10 +51,8 @@ export default function EmployeeDirectory() {
 
   });
 
-  useEffect(() => {
-    table.setColumnFilters([{id:'status', value: 'active'}]);
-  },[]);
-
+  const statusOptions = ['All', 'Active', 'On Leave', 'Remote'];
+  const departmentOptions = ['All', 'Engineering', 'Marketing', 'Sales', 'HR'];
 
   return (
     <>
@@ -84,6 +83,36 @@ export default function EmployeeDirectory() {
                     header.column.columnDef.header,
                     header.getContext(),
                   )}
+                {header.column.columnDef.enableColumnFilter && (
+                    <div style={{ marginTop: "8px" }}>
+                    <FormControl fullWidth size="small">
+                        <Select
+                        value={header.column.getFilterValue() ?? 'All'}
+                        onChange={(e) => {
+                            const value = e.target.value === 'All' ? '' : e.target.value;
+                            header.column.setFilterValue(value);
+                        }}
+                        displayEmpty
+                        style={{ background: "white", fontSize: "0.9em" }}
+                        >
+                        {header.id === 'status' && 
+                            statusOptions.map((option) => (
+                            <MenuItem key={option} value={option}>
+                                {option}
+                            </MenuItem>
+                            ))
+                        }
+                        {header.id === 'department' && 
+                            departmentOptions.map((option) => (
+                            <MenuItem key={option} value={option}>
+                                {option}
+                            </MenuItem>
+                            ))
+                        }
+                        </Select>
+                    </FormControl>
+                    </div>
+                )}
                 </th>
               ))}
             </tr>
