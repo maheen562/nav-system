@@ -25,10 +25,11 @@ export default function Navbar() {
           },
         }}
         >
-          <MenuItem component={<NavLink to="/employeedirectory" />}
-          active={window.location.pathname === '/employeedirectory'}>Employee Directory </MenuItem>
           <MenuItem component={<NavLink to="/dashboard" />}
           active={window.location.pathname === '/dashboard'}> Dashboard  </MenuItem>
+          <MenuItem component={<NavLink to="/employeedirectory" />}
+          active={window.location.pathname === '/employeedirectory'}>Employee Directory </MenuItem>
+          
         </Menu>
       </Sidebar>
     

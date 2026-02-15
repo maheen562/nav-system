@@ -4,24 +4,25 @@
  * @returns {JSX.Element} The rendered FilterFunction component.
  */
 import DebouncedInput from "./DebouncedInput";
+import { Button } from "@mui/material";
 
 export default function FilterFunction({ column }) {
   const columnFilterValue = column.getFilterValue();
 
   return (
-    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+    <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
       <DebouncedInput
         type="text"
         value={(columnFilterValue ?? '')}
         onChange={(value) => column.setFilterValue(value)}
-        placeholder={`Search ${column.id}...`}
+        placeholder={`Search by ${column.id}...`}
         debounce={300}
         style={{ padding: '5px', width: '200px' }}
       />
       {columnFilterValue && (
-        <button onClick={() => column.setFilterValue('')}>
+        <Button variant="contained" onClick={() => column.setFilterValue('')}>
           Clear
-        </button>
+        </Button>
       )}
     </div>
   );
