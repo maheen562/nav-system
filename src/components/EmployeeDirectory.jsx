@@ -1,5 +1,6 @@
 //table defined from tanstack table, data from dummyjson.com, and react-router-dom for navigation.
 //https://www.youtube.com/watch?v=hson9BXU9F8&list=PLC3y8-rFHvwgWTSrDiwmUsl4ZvipOw9Cz&index=3
+//https://www.youtube.com/watch?v=_Mnk2LB6g6k&list=PLcuAByNrzwnj1az88-vpnwj-tDp4eCwXi&index=16
 
 import React, { useMemo, useEffect, useState } from "react";
 import {
@@ -20,10 +21,10 @@ export default function EmployeeDirectory() {
       
       { id: 'id', accessorKey: 'id', header: 'ID' },
       { id: 'name', accessorKey: 'name', header: 'Name' },
-      { id: 'department', accessorKey: 'department', header: 'Department' },
+      { id: 'department', accessorKey: 'department', header: 'Department', FilterFn: 'arrIncludesSome' },
       { id: 'position', accessorKey: 'position', header: 'Position' },
       { id: 'email', accessorKey: 'email', header: 'Email' },
-      { id: 'status', accessorKey: 'status', header: 'Status' },     ],
+      { id: 'status', accessorKey: 'status', header: 'Status', FilterFn: 'arrIncludesSome' },     ],
       [],
     
   );
@@ -35,6 +36,7 @@ export default function EmployeeDirectory() {
   }, []);
 
   const [columnFilters,setColumnFilters] = useState([]);
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     columns,
@@ -47,6 +49,10 @@ export default function EmployeeDirectory() {
     onColumnFiltersChange: setColumnFilters,
 
   });
+
+  useEffect(() => {
+    table.setColumnFilters([{id:'status', value: 'active'}]);
+  },[]);
 
 
   return (

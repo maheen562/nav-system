@@ -1,4 +1,8 @@
-// FilterFunction.jsx
+/**
+ * This component is responsible for rendering the filter input for a specific column in the table.
+ * It uses the DebouncedInput component to debounce user input and prevent excessive re-rendering of the table.
+ * @returns {JSX.Element} The rendered FilterFunction component.
+ */
 import DebouncedInput from "./DebouncedInput";
 
 export default function FilterFunction({ column }) {
