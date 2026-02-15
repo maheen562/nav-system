@@ -5,8 +5,10 @@ import React, { useMemo, useEffect, useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
+  getFilteredRowModel,
   flexRender,
 } from "@tanstack/react-table";
+import FilterFunction from "./FilterFunction";
 
 const fallbackData = [];
 
@@ -32,16 +34,31 @@ export default function EmployeeDirectory() {
       .then((data) => setEmployee(data));
   }, []);
 
+  const [columnFilters,setColumnFilters] = useState([]);
+
   const table = useReactTable({
     columns,
     data: employee ?? fallbackData, //also good to use a fallback array that is defined outside of the component (stable reference)
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+        columnFilters: columnFilters,
+    },
+    onColumnFiltersChange: setColumnFilters,
+
   });
+
 
   return (
     <>
-      <h1> Employee Directory </h1>
+        <div>   
+            <h1> Employee Directory </h1>
+        </div>
       <br />
+      {/* <input type='text' value={columnFilters} onChange={(e) => setColumnFilters(e.target.value)} /> */}
+      <FilterFunction column={table.getColumn("name")} table={table} />
+      <br />
+      <p>Showing {table.getFilteredRowModel().rows.length} of {table.getRowCount()} employees</p>
       <table style={{ border: "solid 1px blue" }}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -67,7 +84,7 @@ export default function EmployeeDirectory() {
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.map((row) => (
+          {table.getFilteredRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td

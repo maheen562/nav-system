@@ -9,10 +9,13 @@ function App() {
       <div style={{ display: 'flex' }}>
         <header> </header>
         <Navbar />
-        <Routes>
-          <Route path="/employeedirectory" element={<EmployeeDirectory />} />
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-        </Routes>
+         <div style={{ flex: 1 }}>
+          <Routes>
+            <Route path="/employeedirectory" element={<EmployeeDirectory />} />
+            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          </Routes>
+      
+         </div>
       </div>
     </div>
   );
