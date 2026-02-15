@@ -1,70 +1,160 @@
-# Getting Started with Create React App
+# Employee Directory & Navigation System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based employee directory application with navigation sidebar, filtering capabilities, and dashboard.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+Before you begin, ensure you have the following installed on your system:
 
-### `npm start`
+- **Node.js** (version 14.0 or higher)
+  - Download from [nodejs.org](https://nodejs.org/)
+  - Verify installation: `node --version`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **npm** (comes with Node.js)
+  - Verify installation: `npm --version`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Git** (optional, for cloning the repository)
+  - Download from [git-scm.com](https://git-scm.com/)
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository** (or download the project)
+```bash
+   git clone <your-repository-url>
+   cd nav-system
+```
 
-### `npm run build`
+2. **Install dependencies**
+```bash
+   npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   This will install all required packages:
+   - React 19.2.4
+   - React Router DOM 7.13.0
+   - TanStack React Table 8.21.3
+   - Material-UI (MUI) 7.3.8
+   - React Pro Sidebar 1.1.0
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Running the Application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Development Mode
 
-### `npm run eject`
+Start the development server:
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- The application will open automatically in your browser at [http://localhost:3000](http://localhost:3000)
+- The page will reload when you make changes
+- You will see any lint errors in the console
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Production Build
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Create an optimized production build:
+```bash
+npm build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Builds the app for production to the `build` folder
+- Correctly bundles React in production mode
+- Optimizes the build for best performance
+- The build is minified and filenames include hashes
+
+## Running Tests
+
+Launch the test runner in interactive watch mode:
+```bash
+npm test
+```
+
+## Project Structure
+```
+nav-system/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx          # Sidebar navigation
+│   │   ├── EmployeeDirectory.jsx  # Employee table with filters
+│   │   ├── Dashboard.jsx       # Dashboard component
+│   │   ├── FilterFunction.jsx  # Search filter component
+│   │   └── DebouncedInput.jsx  # Debounced input for search
+│   ├── App.js                  # Main app component with routing
+│   ├── App.css                 # App styles
+│   ├── index.js                # Entry point
+│   └── index.css               # Global styles
+├── package.json
+└── README.md
+```
+
+## Features
+
+- **Employee Directory**: View and filter employee data
+  - Search by name
+  - Filter by department (Engineering, Marketing, Sales, HR)
+  - Filter by status (Active, On Leave, Remote)
+  - Real-time filtering with debounced search
+
+- **Dashboard**: Landing page with overview
+
+- **Responsive Sidebar Navigation**: Navigate between different sections
+
+- **React Router**: Client-side routing for seamless navigation
+
+## Technologies Used
+
+- **React** (19.2.4) - Frontend framework
+- **React Router DOM** (7.13.0) - Routing
+- **TanStack React Table** (8.21.3) - Table management and filtering
+- **Material-UI** (7.3.8) - UI components
+- **React Pro Sidebar** (1.1.0) - Sidebar navigation
+
+## Troubleshooting
+
+### Port 3000 is already in use
+
+If you see an error that port 3000 is already in use:
+```bash
+# Kill the process on port 3000
+# On Mac/Linux:
+lsof -ti:3000 | xargs kill -9
+
+# On Windows:
+netstat -ano | findstr :3000
+taskkill /PID <PID> /F
+```
+
+### Module not found errors
+
+Clear cache and reinstall dependencies:
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+### Hot reload issues
+
+Stop the server and restart:
+```bash
+# Press Ctrl+C to stop
+npm start
+```
+
+## Browser Support
+
+### Development
+- Last version of Chrome
+- Last version of Firefox  
+- Last version of Safari
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [React Documentation](https://react.dev/)
+- [Create React App Documentation](https://facebook.github.io/create-react-app/docs/getting-started)
+- [React Router Documentation](https://reactrouter.com/)
+- [TanStack Table Documentation](https://tanstack.com/table/latest)
+- [Material-UI Documentation](https://mui.com/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is private and not licensed for public use.

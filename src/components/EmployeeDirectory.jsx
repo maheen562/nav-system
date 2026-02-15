@@ -1,7 +1,10 @@
-//table defined from tanstack table, data from dummyjson.com, and react-router-dom for navigation.
-//https://www.youtube.com/watch?v=hson9BXU9F8&list=PLC3y8-rFHvwgWTSrDiwmUsl4ZvipOw9Cz&index=3
-//https://www.youtube.com/watch?v=_Mnk2LB6g6k&list=PLcuAByNrzwnj1az88-vpnwj-tDp4eCwXi&index=16
-
+/**
+ * EmployeeDirectory component fetches employee data from an Dummy JSON and displays it in a table format.
+ * It uses the TanStack Table library to create a table with features like filtering and pagination.
+ * It has option to search by name and filter by department and status. The table is styled with basic CSS for better readability.
+ * Code taken from https://www.youtube.com/watch?v=hson9BXU9F8&list=PLC3y8-rFHvwgWTSrDiwmUsl4ZvipOw9Cz&index=3 and modified to fit the needs of the application.
+ * @returns {JSX.Element} The rendered EmployeeDirectory component.
+*/
 import React, { useMemo, useEffect, useState } from "react";
 import {
   useReactTable,
@@ -31,13 +34,12 @@ export default function EmployeeDirectory() {
   );
 
   useEffect(() => {
-    fetch("https://dummyjson.com/c/092c-8ec9-4627-9bb4")
+    fetch("https://dummyjson.com/c/7b3b-9fbe-4378-8196")
       .then((res) => res.json())
       .then((data) => setEmployee(data));
   }, []);
 
   const [columnFilters,setColumnFilters] = useState([]);
-  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     columns,
@@ -56,11 +58,12 @@ export default function EmployeeDirectory() {
 
   return (
     <>
-        <div>   
+      <div>   
             <h1> Employee Directory </h1>
         </div>
       <br />
-      {/* <input type='text' value={columnFilters} onChange={(e) => setColumnFilters(e.target.value)} /> */}
+
+
       <FilterFunction column={table.getColumn("name")} table={table} />
       <br />
       

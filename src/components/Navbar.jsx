@@ -4,6 +4,7 @@
  * a sidebar with menu items that link to different routes in the application.
  * The NavLink component from react-router-dom is used to create links that can 
  * be styled based on the active route.
+ * Code taken from react-pro-sidebar documentation and modified to fit the needs of the application.
  * @returns {JSX.Element} The rendered Navbar component.
  */
 
@@ -25,10 +26,11 @@ export default function Navbar() {
           },
         }}
         >
-          <MenuItem component={<NavLink to="/employeedirectory" />}
-          active={window.location.pathname === '/employeedirectory'}>Employee Directory </MenuItem>
           <MenuItem component={<NavLink to="/dashboard" />}
           active={window.location.pathname === '/dashboard'}> Dashboard  </MenuItem>
+          <MenuItem component={<NavLink to="/employeedirectory" />}
+          active={window.location.pathname === '/employeedirectory'}>Employee Directory </MenuItem>
+          
         </Menu>
       </Sidebar>
     
