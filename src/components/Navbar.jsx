@@ -13,6 +13,7 @@ import { NavLink } from 'react-router-dom';
 export default function Navbar() {
 
   return (
+    <>
       <Sidebar style={{ height: '100vh' }} collapsed={false}>
         <Menu
         menuItemStyles={{
@@ -30,5 +31,7 @@ export default function Navbar() {
           active={window.location.pathname === '/dashboard'}> Dashboard  </MenuItem>
         </Menu>
       </Sidebar>
+    
+      </>
   );
 }
