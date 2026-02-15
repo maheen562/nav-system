@@ -1,8 +1,11 @@
 /**
  * This component is responsible for rendering the filter input for a specific column in the table.
- * It uses the DebouncedInput component to debounce user input and prevent excessive re-rendering of the table.
+ * It uses the DebouncedInput component to debounce user input and prevent excessive 
+ * re-rendering of the table.
+ * Code taken from https://github.com/dmitrisanzharov/tanstack-yt-react-table-v8/tree/master/src/components
  * @returns {JSX.Element} The rendered FilterFunction component.
  */
+
 import DebouncedInput from "./DebouncedInput";
 import { Button } from "@mui/material";
 

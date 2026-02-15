@@ -1,4 +1,13 @@
-import './App.css';
+/**
+ * App component serves as the main entry point of the application, setting up the layout 
+ * and routing for the dashboard and employee directory.
+ * It uses React Router for navigation and includes a Navbar component 
+ * for consistent navigation across the app.
+ * The Routes component defines the different routes available in the application, 
+ * including a default route that redirects to the dashboard.
+ * @returns {JSX.Element} The rendered App component.
+ */
+
 import Navbar from "./components/Navbar";
 import EmployeeDirectory from "./components/EmployeeDirectory";
 import Dashboard from "./components/Dashboard";

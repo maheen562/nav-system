@@ -1,3 +1,7 @@
+/**
+ * Dashboard component 
+ * @returns {JSX.Element} The rendered Dashboard component.
+ * */
 import React from 'react'
 import { Card, CardContent, Typography, CardActions, Button } from '@mui/material';
 
